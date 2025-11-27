@@ -1,9 +1,7 @@
-// script.js - Professional Version
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // ===============================
-  // Smooth Scrolling for Navigation & Buttons
+  // Smooth Scrolling
   // ===============================
   const smoothScroll = (selector, offset = 0) => {
     document.querySelectorAll(selector).forEach(link => {
@@ -20,9 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   };
-
-  smoothScroll(".link, .link2, .link3", 70); // Adjust offset for fixed header
-  smoothScroll(".first-button, #learn");      // Hero buttons
+  smoothScroll(".link, .link2, .link3", 70);
+  smoothScroll(".first-button, #learn");
 
   // ===============================
   // Hero Fade-Up Animation
@@ -41,19 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===============================
   // Testimonial Close Button
   // ===============================
-  const closeTestimonial = () => {
-    const closeBtn = document.querySelector(".close-icon");
-    const testimonial = document.querySelector(".glass-block");
-    if (closeBtn && testimonial) {
-      closeBtn.addEventListener("click", () => {
-        testimonial.style.display = "none";
-      });
-    }
-  };
-  closeTestimonial();
+  const closeBtn = document.querySelector(".close-icon");
+  const testimonial = document.querySelector(".glass-block");
+  if (closeBtn && testimonial) {
+    closeBtn.addEventListener("click", () => {
+      testimonial.style.display = "none";
+    });
+  }
 
   // ===============================
-  // Contact Form Validation & Submission
+  // Contact Form Validation
   // ===============================
   const contactForm = document.querySelector(".contact-form");
   if (contactForm) {
@@ -74,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===============================
-  // Newsletter Subscription Demo
+  // Newsletter Demo
   // ===============================
   const newsletterButton = document.querySelector(".newsletter button");
   const newsletterInput = document.querySelector(".newsletter input");
@@ -93,25 +87,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===============================
   // Portfolio Lightbox
   // ===============================
-  const initPortfolioLightbox = () => {
-    document.querySelectorAll(".portfolio-card").forEach(card => {
-      const btn = card.querySelector(".project-btn");
-      const media = card.querySelector("img, video");
-      if (btn && media) {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          openLightbox(media);
-        });
-      }
-    });
-  };
-  initPortfolioLightbox();
+  document.querySelectorAll(".portfolio-card").forEach(card => {
+    const btn = card.querySelector(".project-btn");
+    const media = card.querySelector("img, video");
+    if (btn && media) {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        openLightbox(media);
+      });
+    }
+  });
 
   // ===============================
   // Social Icons Hover Animation
   // ===============================
-  const socialIcons = document.querySelectorAll(".social-icons a, .handles-div img");
-  socialIcons.forEach(icon => {
+  document.querySelectorAll(".social-icons a, .handles-div img").forEach(icon => {
     icon.addEventListener("mouseenter", () => icon.style.transform = "scale(1.15)");
     icon.addEventListener("mouseleave", () => icon.style.transform = "scale(1)");
   });
@@ -134,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
       z-index: 9999;
       cursor: pointer;
     `;
-
     let clone;
     if (media.tagName === "IMG") {
       clone = media.cloneNode();
@@ -144,34 +133,32 @@ document.addEventListener("DOMContentLoaded", () => {
       clone = media.cloneNode(true);
       clone.controls = true;
       clone.autoplay = true;
+      clone.muted = true; // required for autoplay in some browsers
       clone.style.maxWidth = "90%";
       clone.style.maxHeight = "90%";
     }
-
     lightbox.appendChild(clone);
     document.body.appendChild(lightbox);
-
     lightbox.addEventListener("click", () => document.body.removeChild(lightbox));
   }
 
-});
-// ===============================
-// Mobile Hamburger Menu
-// ===============================
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-
-if (hamburger && navLinks) {
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navLinks.classList.toggle("active");
-  });
-
-  // Close menu when a link is clicked
-  navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navLinks.classList.remove("active");
+  // ===============================
+  // Mobile Hamburger Menu
+  // ===============================
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navLinks.classList.toggle("active");
     });
-  });
-}
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navLinks.classList.remove("active");
+      });
+    });
+  }
+
+});
